@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import joblib
 
 # Configurações de usuários e senhas (dados fixos no código)
 USER_CREDENTIALS = {
@@ -19,17 +20,25 @@ def login():
         else:
             st.error("Usuário ou senha incorretos. Tente novamente!")
 
-# Função da calculadora de soma
+# Função da calculadora com modelo RF
 def main_app():
-    st.title("Calculadora de Soma 🎉")
+    st.title("Previsão com Random Forest 🎉")
     st.write(f"Olá, **{st.session_state['username']}**! Bem-vindo ao aplicativo.")
-    st.write("Preencha os valores de **x**, **y** e **z** abaixo. O aplicativo calculará automaticamente a soma.")
+    st.write("Preencha os valores de **x**, **y** e **z** abaixo. O modelo Random Forest calculará o resultado.")
+
+    # Carregando o modelo RF treinado
+    try:
+        model = joblib.load("random_forest_model.pkl")  # Substitua pelo caminho correto
+        st.success("Modelo carregado com sucesso!")
+    except FileNotFoundError:
+        st.error("Erro: Modelo não encontrado. Certifique-se de que 'random_forest_model.pkl' está na pasta do app.")
+        return
 
     # Número de linhas na tabela
     num_rows = st.number_input("Número de linhas:", min_value=1, max_value=20, value=1, step=1)
 
     # Criar DataFrame inicial
-    data = {"x": [0] * num_rows, "y": [0] * num_rows, "z": [0] * num_rows, "Soma": [0] * num_rows}
+    data = {"x": [0] * num_rows, "y": [0] * num_rows, "z": [0] * num_rows, "Previsão (RF)": [0] * num_rows}
     df = pd.DataFrame(data)
 
     # Entrada dinâmica de valores
@@ -42,8 +51,13 @@ def main_app():
         with col3:
             df.at[i, "z"] = st.number_input(f"Valor z (Linha {i + 1}):", key=f"z_{i}")
 
-    # Calcular soma
-    df["Soma"] = df["x"] + df["y"] + df["z"]
+    # Fazer previsões com o modelo
+    try:
+        predictions = model.predict(df[["x", "y", "z"]])
+        df["Previsão (RF)"] = predictions
+    except Exception as e:
+        st.error(f"Erro ao fazer previsões: {e}")
+        return
 
     # Exibir resultados
     st.write("Tabela com os resultados:")
