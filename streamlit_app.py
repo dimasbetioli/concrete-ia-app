@@ -4,27 +4,26 @@ import pandas as pd
 # Título do aplicativo
 st.title("Calculadora de Soma 🎉")
 
-# Instruções
-st.write("Preencha os valores de **x**, **y** e **z** na tabela abaixo. O aplicativo calculará automaticamente a soma.")
+# Número de linhas na tabela
+num_rows = st.number_input("Número de linhas:", min_value=1, max_value=20, value=1, step=1)
 
-# Dados iniciais para a tabela
-data = {
-    "x": [0],
-    "y": [0],
-    "z": [0],
-    "Soma": [0],  # Coluna para exibir o resultado
-}
-
-# Criação de um DataFrame com os dados iniciais
+# Criar dataframe inicial
+data = {"x": [0] * num_rows, "y": [0] * num_rows, "z": [0] * num_rows}
 df = pd.DataFrame(data)
 
-# Exibe a tabela editável
-edited_df = st.experimental_data_editor(df, num_rows="dynamic", key="data_editor")
+# Receber inputs para cada linha
+for i in range(num_rows):
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        df.at[i, "x"] = st.number_input(f"Valor x (Linha {i + 1}):", key=f"x_{i}")
+    with col2:
+        df.at[i, "y"] = st.number_input(f"Valor y (Linha {i + 1}):", key=f"y_{i}")
+    with col3:
+        df.at[i, "z"] = st.number_input(f"Valor z (Linha {i + 1}):", key=f"z_{i}")
 
-# Calcula a soma para cada linha
-if edited_df is not None:
-    edited_df["Soma"] = edited_df["x"] + edited_df["y"] + edited_df["z"]
+# Calcular soma
+df["Soma"] = df["x"] + df["y"] + df["z"]
 
-    # Mostra a tabela com as somas atualizadas
-    st.write("Tabela com os resultados:")
-    st.dataframe(edited_df)
+# Exibir tabela com resultados
+st.write("Tabela com os resultados:")
+st.dataframe(df)
