@@ -22,6 +22,40 @@ def login():
 
 # Função da calculadora com modelo RF
 def main_app():
+    st.markdown(
+    """
+    <style>
+    /* Fundo do site */
+    .stApp {
+        background-color: #f5f5f5;
+    }
+
+    /* Títulos e subtítulos */
+    h1 {
+        color: #2e86c1;
+    }
+    h2 {
+        color: #28b463;
+    }
+
+    /* Ícones */
+    .icon {
+        color: #f39c12;
+        font-size: 50px;
+    }
+
+    /* Botões */
+    button {
+        background-color: #2e86c1;
+        color: white;
+        border-radius: 5px;
+        padding: 10px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
     st.title("Previsão com Random Forest 🎉")
     st.write(f"Olá, **{st.session_state['username']}**! Bem-vindo ao aplicativo.")
     st.write("Preencha os valores de **x**, **y** e **z** abaixo. O modelo Random Forest calculará o resultado.")
