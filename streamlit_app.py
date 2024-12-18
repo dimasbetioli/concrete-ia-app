@@ -6,7 +6,7 @@ import joblib
 # Configuração da página
 st.set_page_config(
     page_title="Previsão de Resistência do Concreto",
-    page_icon="🧱",
+    page_icon="https://raw.githubusercontent.com/dimasbetioli/concrete-ia-app/refs/heads/main/mult2.png",
     layout="centered",
     initial_sidebar_state="expanded"
 )
@@ -15,7 +15,7 @@ model = joblib.load("HistGB.pkl")
 
 # Título principal
 st.markdown(
-    "<h1 style='text-align: center; color: #2196F3;'>🧱 Previsão da Resistência do Concreto aos 28 Dias</h1>",
+    "<h1 style='text-align: center; color: #2196F3;'>"https://raw.githubusercontent.com/dimasbetioli/concrete-ia-app/refs/heads/main/mult2.png" Previsão da Resistência do Concreto aos 28 Dias</h1>",
     unsafe_allow_html=True,
 )
 
