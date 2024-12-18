@@ -13,7 +13,7 @@ st.set_page_config(
 # Carregar o modelo salvo
 @st.cache_resource
 def load_model():
-    model_path = r""https://raw.githubusercontent.com/dimasbetioli/concrete-ia-app/main/HistGB.pkl""
+    model_path = r"https://raw.githubusercontent.com/dimasbetioli/concrete-ia-app/main/HistGB.pkl"
     with open(model_path, "rb") as file:
         model = pickle.load(file)
     return model
