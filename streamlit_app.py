@@ -54,7 +54,7 @@ if st.button("Calcular Resistência"):
 st.markdown(
     """
     <footer style="text-align: center; margin-top: 20px;">
-        <small>Feito com ❤️ usando Streamlit | Projeto Embrapii</small>
+        <small>Projeto Embrapii | USP | ITA</small>
     </footer>
     """,
     unsafe_allow_html=True,
