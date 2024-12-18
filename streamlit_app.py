@@ -1,6 +1,7 @@
 import streamlit as st
 import pickle
 import numpy as np
+import joblib
 
 # Configuração da página
 st.set_page_config(
@@ -10,22 +11,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Carregar o modelo salvo
-@st.cache_resource
-def load_model():
-    # URL de download direto do arquivo HistGB.pkl no GitHub
-    model_url = "https://raw.githubusercontent.com/dimasbetioli/concrete-ia-app/main/HistGB.pkl"
-    
-    # Baixar o arquivo do GitHub
-    response = requests.get(model_url)
-    response.raise_for_status()  # Levanta um erro se a requisição falhar
-    
-    # Carregar o modelo diretamente a partir do conteúdo binário em memória
-    model = pickle.load(BytesIO(response.content))
-    
-    return model
-    
-model = load_model()
+model = joblib.load("HistGB.pkl")
 
 # Título principal
 st.markdown(
