@@ -13,11 +13,18 @@ st.set_page_config(
 # Carregar o modelo salvo
 @st.cache_resource
 def load_model():
-    model_path = r"https://raw.githubusercontent.com/dimasbetioli/concrete-ia-app/main/HistGB.pkl"
-    with open(model_path, "rb") as file:
-        model = pickle.load(file)
+    # URL de download direto do arquivo HistGB.pkl no GitHub
+    model_url = "https://raw.githubusercontent.com/dimasbetioli/concrete-ia-app/main/HistGB.pkl"
+    
+    # Baixar o arquivo do GitHub
+    response = requests.get(model_url)
+    response.raise_for_status()  # Levanta um erro se a requisição falhar
+    
+    # Carregar o modelo diretamente a partir do conteúdo binário em memória
+    model = pickle.load(BytesIO(response.content))
+    
     return model
-
+    
 model = load_model()
 
 # Título principal
