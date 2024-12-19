@@ -21,15 +21,15 @@ st.image(
 
 # Título principal
 st.markdown(
-    "<h1 style='text-align: center; color: #2196F3; font-size: 18px;'> PROJETO - IA APLICADA À PREVISÃO DA RESISTÊNCIA DE CONCRETOS</h1>",
+    "<h1 style='text-align: center; color: #2196F3; font-size: 18px;'> PROJETO - IA APLICADA À PREVISÃO DA RESISTÊNCIA DE CONCRETOS AOS 28 DIAS</h1>",
     unsafe_allow_html=True,
 )
 
 # Introdução
 st.markdown(
     """
-    <div style="background-color: #f9f9f9; padding: 20px; border-radius: 10px; margin: 10px 0;">
-        <h3 style="text-align: center; color: #FF5722;">Escolha o conjunto de variáveis para calcular a resistência do concreto aos 28 dias.</h3>
+    <div style="background-color: #f9f9f9; padding: 10px; border-radius: 10px; margin: 10px 0;">
+        <h3 style="text-align: center; color: #FF5722;">Equipe liderada pelo Prof André C.P.F.L. de Carvalho.</h3>
     </div>
     """,
     unsafe_allow_html=True,
