@@ -78,7 +78,7 @@ st.markdown(
 tipo_entrada = None
 
 # Centralizar e exibir botões lado a lado
-col1, col2 = st.columns(2)
+col1, col2 = st.columns([1, 1])  # Utilizando a proporção igual para as colunas
 
 with col1:
     if st.button("Inserir manualmente"):
@@ -87,6 +87,7 @@ with col1:
 with col2:
     if st.button("Carregar arquivo Excel"):
         tipo_entrada = "Carregar arquivo Excel"
+
 # Lógica condicional baseada na escolha do usuário
 if tipo_entrada == "Inserir manualmente":
     st.write("Você escolheu inserir os dados manualmente.")
@@ -94,12 +95,6 @@ elif tipo_entrada == "Carregar arquivo Excel":
     st.write("Você escolheu carregar um arquivo Excel.")
 else:
     st.write("Por favor, selecione uma opção acima.")
-
-# Lógica condicional baseada na escolha do usuário
-if tipo_entrada == "Inserir manualmente":
-    st.write("Você escolheu inserir os dados manualmente.")
-elif tipo_entrada == "Carregar arquivo Excel":
-    st.write("Você escolheu carregar um arquivo Excel.")
 
 if tipo_entrada == "Inserir manualmente":
     # Opções de configuração
