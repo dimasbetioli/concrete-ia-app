@@ -27,7 +27,7 @@ st.markdown(
 
 # Introdução
 st.markdown(
-    '<h3 style="text-align: center; color: #2C2C2C; font-size: 14px; margin-bottom: 20px;">Equipe liderada pelo Prof André C.P.F.L. de Carvalho</h3>',
+    '<h3 style="text-align: center; color: #2C2C2C; font-size: 14px; margin-bottom: 20px;">Equipe liderada pelo Prof André C.P.L.F. de Carvalho</h3>',
     unsafe_allow_html=True,
 )
 
