@@ -53,7 +53,7 @@ if tipo_entrada == "Inserir manualmente":
 elif tipo_entrada == "Carregar arquivo Excel":
     st.write("Você escolheu carregar um arquivo Excel.")
 else:
-    st.write("Por favor, selecione acima se deseja inserir os dados manualmente ou carregar um arquivo Excel &#8593;.")
+    st.write("Por favor, selecione acima se deseja inserir os dados manualmente ou carregar um arquivo Excel <span style="font-size: 32px; color: #4CAF50;">&#8593;</span>.")
 
 if tipo_entrada == "Inserir manualmente":
     # Opções de configuração
