@@ -11,44 +11,102 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-model = joblib.load("linear0.pkl")
-
 # Título principal
 st.markdown(
     "<h1 style='text-align: center; color: #2196F3;'> Previsão da Resistência do Concreto aos 28 Dias</h1>",
     unsafe_allow_html=True,
 )
 
-# Caixa de introdução
+# Introdução
 st.markdown(
     """
     <div style="background-color: #f9f9f9; padding: 20px; border-radius: 10px; margin: 10px 0;">
-        <h3 style="text-align: center; color: #FF5722;">Digite os valores de CT_Cimento e CT_Agua para calcular a resistência do concreto aos 28 dias.</h3>
+        <h3 style="text-align: center; color: #FF5722;">Escolha o conjunto de variáveis para calcular a resistência do concreto aos 28 dias.</h3>
     </div>
     """,
     unsafe_allow_html=True,
 )
 
-# Entradas do usuário
-col1, col2 = st.columns(2)
-with col1:
-    ct_cimento = st.number_input("CT_Cimento (kg/m³):", min_value=0.0, step=1.0)
-with col2:
-    ct_agua = st.number_input("CT_Agua (kg/m³):", min_value=0.0, step=1.0)
+# Opções de configuração
+opcao = st.radio(
+    "Escolha a configuração de entrada:",
+    [
+        "CT_Cimento e CT_Água",
+        "CT_Cimento, CT_Água, e resistências reais (3d, 7d, 28d)",
+        "CT_Cimento, CT_Água, resistências reais, e Fc_7d",
+        "CT_Cimento, CT_Água, resistências reais, Fc_7d, e aditivos",
+        "Todas as variáveis"
+    ]
+)
+
+# Variáveis de entrada com base na opção
+entradas = []
+model_path = ""
+
+if opcao == "CT_Cimento e CT_Água":
+    model_path = "modelo1.pkl"
+    entradas.append(st.number_input("CT_Cimento (kg/m³):", min_value=0.0, step=1.0))
+    entradas.append(st.number_input("CT_Água (kg/m³):", min_value=0.0, step=1.0))
+
+elif opcao == "CT_Cimento, CT_Água, e resistências reais (3d, 7d, 28d)":
+    model_path = "modelo2.pkl"
+    entradas.extend([
+        st.number_input("CT_Cimento (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Água (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("Cimento resistência real 3d (MPa):", min_value=0.0, step=1.0),
+        st.number_input("Cimento resistência real 7d (MPa):", min_value=0.0, step=1.0),
+        st.number_input("Cimento resistência real 28d (MPa):", min_value=0.0, step=1.0),
+    ])
+
+elif opcao == "CT_Cimento, CT_Água, resistências reais, e Fc_7d":
+    model_path = "modelo3.pkl"
+    entradas.extend([
+        st.number_input("CT_Cimento (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Água (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("Cimento resistência real 3d (MPa):", min_value=0.0, step=1.0),
+        st.number_input("Cimento resistência real 7d (MPa):", min_value=0.0, step=1.0),
+        st.number_input("Cimento resistência real 28d (MPa):", min_value=0.0, step=1.0),
+        st.number_input("Fc 7d (MPa):", min_value=0.0, step=1.0),
+    ])
+
+elif opcao == "CT_Cimento, CT_Água, resistências reais, Fc_7d, e aditivos":
+    model_path = "modelo4.pkl"
+    entradas.extend([
+        st.number_input("CT_Cimento (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Água (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("Cimento resistência real 3d (MPa):", min_value=0.0, step=1.0),
+        st.number_input("Cimento resistência real 7d (MPa):", min_value=0.0, step=1.0),
+        st.number_input("Cimento resistência real 28d (MPa):", min_value=0.0, step=1.0),
+        st.number_input("Fc 7d (MPa):", min_value=0.0, step=1.0),
+        st.number_input("CT_Sílica (kg/m³):", min_value=0.0, step=1.0),
+        # Adicione os outros campos de aditivos conforme necessário
+    ])
+
+elif opcao == "Todas as variáveis":
+    model_path = "modelo5.pkl"
+    entradas.extend([
+        st.number_input("CT_Cimento (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Água (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("Cimento resistência real 3d (MPa):", min_value=0.0, step=1.0),
+        st.number_input("Cimento resistência real 7d (MPa):", min_value=0.0, step=1.0),
+        st.number_input("Cimento resistência real 28d (MPa):", min_value=0.0, step=1.0),
+        st.number_input("Fc 7d (MPa):", min_value=0.0, step=1.0),
+        st.number_input("Volume (m³):", min_value=0.0, step=1.0),
+        # Adicione os outros campos conforme necessário
+    ])
 
 # Botão para calcular
 if st.button("Calcular Resistência"):
-    if ct_cimento > 0 and ct_agua > 0:
-        # Criar array de entrada para o modelo
-        entrada = np.array([[ct_cimento, ct_agua]])
-        
-        # Fazer previsão com o modelo
-        resistencia_28d = model.predict(entrada)[0]
-        
-        # Exibir resultado
-        st.success(f"A resistência prevista do concreto aos 28 dias é: **{resistencia_28d:.2f} MPa**")
+    if all(v > 0 for v in entradas):
+        try:
+            model = joblib.load(model_path)
+            entrada = np.array([entradas])
+            resistencia_28d = model.predict(entrada)[0]
+            st.success(f"A resistência prevista do concreto aos 28 dias é: **{resistencia_28d:.2f} MPa**")
+        except Exception as e:
+            st.error(f"Erro ao carregar o modelo ou realizar a predição: {e}")
     else:
-        st.error("Por favor, insira valores válidos para CT_Cimento e CT_Agua.")
+        st.error("Por favor, insira valores válidos para todas as variáveis.")
 
 # Footer
 st.markdown(
