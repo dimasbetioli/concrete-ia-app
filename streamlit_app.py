@@ -14,7 +14,6 @@ st.set_page_config(
 # Adicionar imagem no topo da página
 st.image(
     "https://raw.githubusercontent.com/dimasbetioli/concrete-ia-app/refs/heads/main/topo.png",
-    caption="Previsão de Resistência do Concreto",
     use_container_width=True
 )
 
