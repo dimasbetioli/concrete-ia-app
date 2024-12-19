@@ -34,6 +34,9 @@ st.markdown(
 # Espaço extra entre a introdução e as opções
 st.markdown("<div style='margin-bottom: 20px;'></div>", unsafe_allow_html=True)
 
+# Inicializar a variável com um valor padrão
+tipo_entrada = None
+
 # Opções de entrada: manual ou por arquivo
 col1, col2 = st.columns(2)  # Criar duas colunas para exibir as opções lado a lado
 
@@ -44,8 +47,13 @@ with col2:
     if st.button("Carregar arquivo Excel"):
         tipo_entrada = "Carregar arquivo Excel"
 
-# Exibir a escolha atual
-st.write(f"Opção selecionada: {tipo_entrada if 'tipo_entrada' in locals() else 'Nenhuma'}")
+# Lógica condicional baseada na escolha do usuário
+if tipo_entrada == "Inserir manualmente":
+    st.write("Você escolheu inserir os dados manualmente.")
+elif tipo_entrada == "Carregar arquivo Excel":
+    st.write("Você escolheu carregar um arquivo Excel.")
+else:
+    st.write("Por favor, selecione uma opção para continuar.")
 
 if tipo_entrada == "Inserir manualmente":
     # Opções de configuração
