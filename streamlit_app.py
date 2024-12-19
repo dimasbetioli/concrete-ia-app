@@ -93,8 +93,6 @@ if tipo_entrada == "Inserir manualmente":
     st.write("Você escolheu inserir os dados manualmente.")
 elif tipo_entrada == "Carregar arquivo Excel":
     st.write("Você escolheu carregar um arquivo Excel.")
-else:
-    st.write("Por favor, selecione uma opção acima.")
 
 if tipo_entrada == "Inserir manualmente":
     # Opções de configuração
