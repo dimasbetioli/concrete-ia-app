@@ -173,20 +173,65 @@ if st.session_state.tipo_entrada == "Inserir manualmente":
 
 elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
     st.write("Aqui você pode carregar um arquivo Excel para fazer a previsão.")
+
+    # Opções de configuração para o Excel
+    opcao_excel = st.radio(
+        "Escolha a configuração de entrada:",
+        [
+            "CT_Cimento e CT_Agua",
+            "CT_Cimento, CT_Agua, e resistências reais (3d, 7d, 28d)",
+            "CT_Cimento, CT_Agua, resistências reais, e Fc_7d",
+            "CT_Cimento, CT_Agua, resistências reais, Fc_7d, e aditivos",
+            "Todas as variáveis"
+        ]
+    )
+
+    # Carregar o arquivo Excel
     uploaded_file = st.file_uploader("Escolha um arquivo Excel", type=["xlsx", "xls"])
 
     if uploaded_file is not None:
-        # Processamento do arquivo Excel
         df = pd.read_excel(uploaded_file)
         st.write(df.head())  # Exibe as primeiras linhas do DataFrame para visualização
 
         if st.button("Fazer previsão com o Excel"):
             try:
-                # Supondo que o modelo já foi carregado previamente
-                model = joblib.load("modelo_geral.pkl")
-                # Extrair dados relevantes do Excel para fazer a previsão
-                input_data = df.iloc[:, :-1].values  # Supondo que a última coluna é a variável alvo
+                # Seleção do modelo e das variáveis de entrada com base na configuração escolhida
+                if opcao_excel == "CT_Cimento e CT_Agua":
+                    model = joblib.load("modelo1.pkl")
+                    input_data = df[["CT_Cimento", "CT_Agua"]].values
+
+                elif opcao_excel == "CT_Cimento, CT_Agua, e resistências reais (3d, 7d, 28d)":
+                    model = joblib.load("modelo2.pkl")
+                    input_data = df[["CT_Cimento", "CT_Agua", "cimento_Resistencia_real_3d", 
+                                     "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d"]].values
+
+                elif opcao_excel == "CT_Cimento, CT_Agua, resistências reais, e Fc_7d":
+                    model = joblib.load("modelo3.pkl")
+                    input_data = df[["CT_Cimento", "CT_Agua", "cimento_Resistencia_real_3d", 
+                                     "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d", "Fc_7d"]].values
+
+                elif opcao_excel == "CT_Cimento, CT_Agua, resistências reais, Fc_7d, e aditivos":
+                    model = joblib.load("modelo4.pkl")
+                    input_data = df[["CT_Cimento", "CT_Agua", "cimento_Resistencia_real_3d", 
+                                     "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d", 
+                                     "Fc_7d", "CT_Silica", "CT_Plastificante", "CT_Polifuncional", 
+                                     "CT_Superplastificante", "CT_Brita_0", "CT_Brita_1", "CT_Areia_natural", 
+                                     "CT_Areia_artificial", "CT_AC", "CT_Aditivo", "CT_Teor_de_Argamassa", 
+                                     "CT_Teor_de_Agua"]].values
+
+                elif opcao_excel == "Todas as variáveis":
+                    model = joblib.load("modelo5.pkl")
+                    input_data = df[["CT_Cimento", "CT_Agua", "cimento_Resistencia_real_3d", 
+                                     "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d", 
+                                     "Fc_7d", "CT_Silica", "CT_Plastificante", "CT_Polifuncional", 
+                                     "CT_Superplastificante", "CT_Brita_0", "CT_Brita_1", "CT_Areia_natural", 
+                                     "CT_Areia_artificial", "CT_AC", "CT_Aditivo", "CT_Teor_de_Argamassa", 
+                                     "CT_Teor_de_Agua", "Volume", "Mesp_Brita_0", "Mesp_Brita_1", 
+                                     "Tempo_de_transporte", "Slump"]].values
+
+                # Fazer a previsão
                 previsoes = model.predict(input_data)
                 st.write(f"Previsões: {previsoes}")
+
             except Exception as e:
                 st.error(f"Erro ao realizar a previsão: {e}")
