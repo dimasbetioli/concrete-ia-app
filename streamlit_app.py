@@ -193,62 +193,61 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
         df = pd.read_excel(uploaded_file)
         st.write(df.head())  # Exibe as primeiras linhas do DataFrame para visualização
 
-        if st.button("Fazer previsão com o Excel"):
-            try:
-                # Seleção do modelo e das variáveis de entrada com base na configuração escolhida
-                if opcao_excel == "CT_Cimento e CT_Agua":
-                    model = joblib.load("modelo1.pkl")
-                    input_data = df[["CT_Cimento", "CT_Agua"]].values
+        try:
+            # Seleção do modelo e das variáveis de entrada com base na configuração escolhida
+            if opcao_excel == "CT_Cimento e CT_Agua":
+                model = joblib.load("modelo1.pkl")
+                input_data = df[["CT_Cimento", "CT_Agua"]].values
 
-                elif opcao_excel == "CT_Cimento, CT_Agua, e resistências reais (3d, 7d, 28d)":
-                    model = joblib.load("modelo2.pkl")
-                    input_data = df[["CT_Cimento", "CT_Agua", "cimento_Resistencia_real_3d", 
-                                     "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d"]].values
+            elif opcao_excel == "CT_Cimento, CT_Agua, e resistências reais (3d, 7d, 28d)":
+                model = joblib.load("modelo2.pkl")
+                input_data = df[["CT_Cimento", "CT_Agua", "cimento_Resistencia_real_3d", 
+                                 "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d"]].values
 
-                elif opcao_excel == "CT_Cimento, CT_Agua, resistências reais, e Fc_7d":
-                    model = joblib.load("modelo3.pkl")
-                    input_data = df[["CT_Cimento", "CT_Agua", "cimento_Resistencia_real_3d", 
-                                     "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d", "Fc_7d"]].values
+            elif opcao_excel == "CT_Cimento, CT_Agua, resistências reais, e Fc_7d":
+                model = joblib.load("modelo3.pkl")
+                input_data = df[["CT_Cimento", "CT_Agua", "cimento_Resistencia_real_3d", 
+                                 "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d", "Fc_7d"]].values
 
-                elif opcao_excel == "CT_Cimento, CT_Agua, resistências reais, Fc_7d, e aditivos":
-                    model = joblib.load("modelo4.pkl")
-                    input_data = df[["CT_Cimento", "CT_Agua", "cimento_Resistencia_real_3d", 
-                                     "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d", 
-                                     "Fc_7d", "CT_Silica", "CT_Plastificante", "CT_Polifuncional", 
-                                     "CT_Superplastificante", "CT_Brita_0", "CT_Brita_1", "CT_Areia_natural", 
-                                     "CT_Areia_artificial", "CT_AC", "CT_Aditivo", "CT_Teor_de_Argamassa", 
-                                     "CT_Teor_de_Agua"]].values
+            elif opcao_excel == "CT_Cimento, CT_Agua, resistências reais, Fc_7d, e aditivos":
+                model = joblib.load("modelo4.pkl")
+                input_data = df[["CT_Cimento", "CT_Agua", "cimento_Resistencia_real_3d", 
+                                 "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d", 
+                                 "Fc_7d", "CT_Silica", "CT_Plastificante", "CT_Polifuncional", 
+                                 "CT_Superplastificante", "CT_Brita_0", "CT_Brita_1", "CT_Areia_natural", 
+                                 "CT_Areia_artificial", "CT_AC", "CT_Aditivo", "CT_Teor_de_Argamassa", 
+                                 "CT_Teor_de_Agua"]].values
 
-                elif opcao_excel == "Todas as variáveis":
-                    model = joblib.load("modelo5.pkl")
-                    input_data = df[["CT_Cimento", "CT_Agua", "cimento_Resistencia_real_3d", 
-                                     "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d", 
-                                     "Fc_7d", "CT_Silica", "CT_Plastificante", "CT_Polifuncional", 
-                                     "CT_Superplastificante", "CT_Brita_0", "CT_Brita_1", "CT_Areia_natural", 
-                                     "CT_Areia_artificial", "CT_AC", "CT_Aditivo", "CT_Teor_de_Argamassa", 
-                                     "CT_Teor_de_Agua", "Volume", "Mesp_Brita_0", "Mesp_Brita_1", 
-                                     "Tempo_de_transporte", "Slump"]].values
+            elif opcao_excel == "Todas as variáveis":
+                model = joblib.load("modelo5.pkl")
+                input_data = df[["CT_Cimento", "CT_Agua", "cimento_Resistencia_real_3d", 
+                                 "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d", 
+                                 "Fc_7d", "CT_Silica", "CT_Plastificante", "CT_Polifuncional", 
+                                 "CT_Superplastificante", "CT_Brita_0", "CT_Brita_1", "CT_Areia_natural", 
+                                 "CT_Areia_artificial", "CT_AC", "CT_Aditivo", "CT_Teor_de_Argamassa", 
+                                 "CT_Teor_de_Agua", "Volume", "Mesp_Brita_0", "Mesp_Brita_1", 
+                                 "Tempo_de_transporte", "Slump"]].values
 
-                # Fazer a previsão
-                previsoes = model.predict(input_data)
-                st.write(f"Previsões: {previsoes}")
+            # Fazer a previsão
+            previsoes = model.predict(input_data)
+            st.write(f"Previsões: {previsoes}")
 
-                # Adicionar as previsões como uma nova coluna no DataFrame
-                df["Previsões"] = previsoes
+            # Adicionar as previsões como uma nova coluna no DataFrame
+            df["Previsões"] = previsoes
 
-                # Salvar o DataFrame atualizado em um novo arquivo Excel
-                output_file = "previsoes_" + uploaded_file.name
-                df.to_excel(output_file, index=False)
-                st.write(f"As previsões foram salvas em: {output_file}")
+            # Salvar o DataFrame atualizado em um novo arquivo Excel
+            output_file = "previsoes_" + uploaded_file.name
+            df.to_excel(output_file, index=False)
+            st.write(f"As previsões foram salvas em: {output_file}")
 
-                # Oferecer o arquivo para download
-                with open(output_file, "rb") as f:
-                    st.download_button(
-                        label="Baixar o arquivo com as previsões",
-                        data=f,
-                        file_name=output_file,
-                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                    )
+            # Oferecer o arquivo para download
+            with open(output_file, "rb") as f:
+                st.download_button(
+                    label="Baixar o arquivo com as previsões",
+                    data=f,
+                    file_name=output_file,
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                )
 
-            except Exception as e:
-                st.error(f"Erro ao realizar a previsão: {e}")
+        except Exception as e:
+            st.error(f"Erro ao realizar a previsão: {e}")
