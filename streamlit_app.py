@@ -118,7 +118,7 @@ if st.session_state.tipo_entrada == "Inserir manualmente":
             st.number_input("cimento_Resistencia_real_28d (MPa):", min_value=0.0, step=1.0, key="resistencia_28d"),
             st.number_input("Fc_7d (MPa):", min_value=0.0, step=1.0, key="fc_7d"),
             st.number_input("CT_Silica (kg/m³):", min_value=0.0, step=1.0, key="ct_silica"),
-            st.number_input("CT_Plastificante (kg/m³):", min_value=0.0, step=1.0, key="ct_plastificante")
+            st.number_input("CT_Plastificante (kg/m³):", min_value=0.0, step=1.0, key="ct_plastificante"),
             st.number_input("CT_Polifuncional (kg/m³):", min_value=0.0, step=1.0),
             st.number_input("CT_Superplastificante (kg/m³):", min_value=0.0, step=1.0),
             st.number_input("CT_Brita_0 (kg/m³):", min_value=0.0, step=1.0),
@@ -139,7 +139,7 @@ if st.session_state.tipo_entrada == "Inserir manualmente":
             st.number_input("Cimento resistência real 7d (MPa):", min_value=0.0, step=1.0),
             st.number_input("Cimento resistência real 28d (MPa):", min_value=0.0, step=1.0),
             st.number_input("Fc 7d (MPa):", min_value=0.0, step=1.0),
-            st.number_input("CT_Sílica (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Silica (kg/m³):", min_value=0.0, step=1.0),
             st.number_input("CT_Plastificante (kg/m³):", min_value=0.0, step=1.0),
             st.number_input("CT_Polifuncional (kg/m³):", min_value=0.0, step=1.0),
             st.number_input("CT_Superplastificante (kg/m³):", min_value=0.0, step=1.0),
