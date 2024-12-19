@@ -29,7 +29,7 @@ st.markdown(
 st.markdown(
     """
     <div style="background-color: #f9f9f9; padding: 10px; border-radius: 10px; margin: 10px 0;">
-        <h3 style="text-align: center; color: #FF5722;">Equipe liderada pelo Prof André C.P.F.L. de Carvalho.</h3>
+        <h3 style="text-align: center; color: #FF5722; font-size: 10px;">Equipe liderada pelo Prof André C.P.F.L. de Carvalho.</h3>
     </div>
     """,
     unsafe_allow_html=True,
