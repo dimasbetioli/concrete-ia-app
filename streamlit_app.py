@@ -132,7 +132,7 @@ if st.session_state.tipo_entrada == "Inserir manualmente":
         ]
     elif opcao == "Todas as variáveis":
         model_path = "modelo5.pkl"
-        st.session_state.entradas.extend([
+        st.session_state.entradas[
             st.number_input("CT_Cimento (kg/m³):", min_value=0.0, step=1.0, key="ct_cimento"),
             st.number_input("CT_Agua (kg/m³):", min_value=0.0, step=1.0, key="ct_agua"),
             st.number_input("cimento_Resistencia_real_3d (MPa):", min_value=0.0, step=1.0, key="resistencia_3d"),
@@ -156,7 +156,7 @@ if st.session_state.tipo_entrada == "Inserir manualmente":
             st.number_input("Mesp_Brita_1 (kg/m³):", min_value=0.0, step=1.0),
             st.number_input("Tempo_de_transporte (s):", min_value=0.0, step=1.0),
             st.number_input("Slump (cm):", min_value=0.0, step=1.0),
-        ])
+        ]
 
     # Botão para calcular
     if st.button("Calcular Resistência"):
