@@ -38,6 +38,31 @@ st.markdown(
 # Título informativo
 st.markdown(
     """
+    <style>
+        .custom-button {
+            display: inline-block;
+            padding: 20px 40px;  /* Aumenta o tamanho do botão */
+            font-size: 18px;  /* Aumenta o tamanho da fonte */
+            font-weight: bold;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .custom-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    """
     <p style="text-align: center; font-size: 16px; color: #2C2C2C;">
         <span style="font-size: 30px; color: #4CAF50;">&#8595;</span> Escolha se deseja inserir os dados manualmente ou carregar um arquivo Excel <span style="font-size: 30px; color: #4CAF50;">&#8595;</span>
     </p>
@@ -52,11 +77,11 @@ tipo_entrada = None
 col1, col2 = st.columns(2)  # Criando duas colunas de igual largura para exibir os botões lado a lado
 
 with col1:
-    if st.button("Inserir manualmente"):
+    if st.markdown('<a href="#" class="custom-button">Inserir manualmente</a>', unsafe_allow_html=True):
         tipo_entrada = "Inserir manualmente"
 
 with col2:
-    if st.button("Carregar arquivo Excel"):
+    if st.markdown('<a href="#" class="custom-button">Carregar arquivo Excel</a>', unsafe_allow_html=True):
         tipo_entrada = "Carregar arquivo Excel"
 
 # Lógica condicional baseada na escolha do usuário
