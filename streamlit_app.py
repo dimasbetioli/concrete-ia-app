@@ -21,7 +21,7 @@ st.image(
 
 # Título principal
 st.markdown(
-    "<h1 style='text-align: center; color: #2196F3;'> Previsão da Resistência do Concreto aos 28 Dias</h1>",
+    "<h1 style='text-align: center; color: #2196F3;'> PROJETO - IA aplicada à previsão do desempenho de cimentos e concretos</h1>",
     unsafe_allow_html=True,
 )
 
