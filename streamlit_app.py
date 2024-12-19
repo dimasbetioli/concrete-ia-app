@@ -46,10 +46,10 @@ if tipo_entrada == "Inserir manualmente":
     opcao = st.radio(
         "Escolha a configuração de entrada:",
         [
-            "CT_Cimento e CT_Água",
-            "CT_Cimento, CT_Água, e resistências reais (3d, 7d, 28d)",
-            "CT_Cimento, CT_Água, resistências reais, e Fc_7d",
-            "CT_Cimento, CT_Água, resistências reais, Fc_7d, e aditivos",
+            "CT_Cimento e CT_Agua",
+            "CT_Cimento, CT_Agua, e resistências reais (3d, 7d, 28d)",
+            "CT_Cimento, CT_Agua, resistências reais, e Fc_7d",
+            "CT_Cimento, CT_Agua, resistências reais, Fc_7d, e aditivos",
             "Todas as variáveis"
         ]
     )
@@ -57,42 +57,42 @@ if tipo_entrada == "Inserir manualmente":
     entradas = []
     model_path = ""
 
-    if opcao == "CT_Cimento e CT_Água":
+    if opcao == "CT_Cimento e CT_Agua":
         model_path = "modelo1.pkl"
         entradas.append(st.number_input("CT_Cimento (kg/m³):", min_value=0.0, step=1.0))
-        entradas.append(st.number_input("CT_Água (kg/m³):", min_value=0.0, step=1.0))
+        entradas.append(st.number_input("CT_Agua (kg/m³):", min_value=0.0, step=1.0))
     
-    elif opcao == "CT_Cimento, CT_Água, e resistências reais (3d, 7d, 28d)":
+    elif opcao == "CT_Cimento, CT_Agua, e resistências reais (3d, 7d, 28d)":
         model_path = "modelo2.pkl"
         entradas.extend([
             st.number_input("CT_Cimento (kg/m³):", min_value=0.0, step=1.0),
-            st.number_input("CT_Água (kg/m³):", min_value=0.0, step=1.0),
-            st.number_input("Cimento resistência real 3d (MPa):", min_value=0.0, step=1.0),
-            st.number_input("Cimento resistência real 7d (MPa):", min_value=0.0, step=1.0),
-            st.number_input("Cimento resistência real 28d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("CT_Agua (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("cimento_Resistencia_real_3d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("cimento_Resistencia_real_7d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("cimento_Resistencia_real_28d (MPa):", min_value=0.0, step=1.0),
         ])
     
-    elif opcao == "CT_Cimento, CT_Água, resistências reais, e Fc_7d":
+    elif opcao == "CT_Cimento, CT_Agua, resistências reais, e Fc_7d":
         model_path = "modelo3.pkl"
         entradas.extend([
             st.number_input("CT_Cimento (kg/m³):", min_value=0.0, step=1.0),
-            st.number_input("CT_Água (kg/m³):", min_value=0.0, step=1.0),
-            st.number_input("Cimento resistência real 3d (MPa):", min_value=0.0, step=1.0),
-            st.number_input("Cimento resistência real 7d (MPa):", min_value=0.0, step=1.0),
-            st.number_input("Cimento resistência real 28d (MPa):", min_value=0.0, step=1.0),
-            st.number_input("Fc 7d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("CT_Agua (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("cimento_Resistencia_real_3d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("cimento_Resistencia_real_7d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("cimento_Resistencia_real_28d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("Fc_7d (MPa):", min_value=0.0, step=1.0),
         ])
     
-    elif opcao == "CT_Cimento, CT_Água, resistências reais, Fc_7d, e aditivos":
+    elif opcao == "CT_Cimento, CT_Agua, resistências reais, Fc_7d, e aditivos":
         model_path = "modelo4.pkl"
         entradas.extend([
             st.number_input("CT_Cimento (kg/m³):", min_value=0.0, step=1.0),
-            st.number_input("CT_Água (kg/m³):", min_value=0.0, step=1.0),
-            st.number_input("Cimento resistência real 3d (MPa):", min_value=0.0, step=1.0),
-            st.number_input("Cimento resistência real 7d (MPa):", min_value=0.0, step=1.0),
-            st.number_input("Cimento resistência real 28d (MPa):", min_value=0.0, step=1.0),
-            st.number_input("Fc 7d (MPa):", min_value=0.0, step=1.0),
-            st.number_input("CT_Sílica (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Agua (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("cimento_Resistencia_real_3d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("cimento_Resistencia_real_7d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("cimento_Resistencia_real_28d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("Fc_7d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("CT_Silica (kg/m³):", min_value=0.0, step=1.0),
             st.number_input("CT_Plastificante (kg/m³):", min_value=0.0, step=1.0),
             st.number_input("CT_Polifuncional (kg/m³):", min_value=0.0, step=1.0),
             st.number_input("CT_Superplastificante (kg/m³):", min_value=0.0, step=1.0),
@@ -110,12 +110,12 @@ if tipo_entrada == "Inserir manualmente":
         model_path = "modelo5.pkl"
         entradas.extend([
             st.number_input("CT_Cimento (kg/m³):", min_value=0.0, step=1.0),
-            st.number_input("CT_Água (kg/m³):", min_value=0.0, step=1.0),
-            st.number_input("Cimento resistência real 3d (MPa):", min_value=0.0, step=1.0),
-            st.number_input("Cimento resistência real 7d (MPa):", min_value=0.0, step=1.0),
-            st.number_input("Cimento resistência real 28d (MPa):", min_value=0.0, step=1.0),
-            st.number_input("Fc 7d (MPa):", min_value=0.0, step=1.0),
-            st.number_input("CT_Sílica (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Agua (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("cimento_Resistencia_real_3d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("cimento_Resistencia_real_7d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("cimento_Resistencia_real_28d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("Fc_7d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("CT_Silica (kg/m³):", min_value=0.0, step=1.0),
             st.number_input("CT_Plastificante (kg/m³):", min_value=0.0, step=1.0),
             st.number_input("CT_Polifuncional (kg/m³):", min_value=0.0, step=1.0),
             st.number_input("CT_Superplastificante (kg/m³):", min_value=0.0, step=1.0),
@@ -153,31 +153,31 @@ elif tipo_entrada == "Carregar arquivo Excel":
     opcao = st.radio(
         "Escolha a configuração de entrada:",
         [
-            "CT_Cimento e CT_Água",
-            "CT_Cimento, CT_Água, e resistências reais (3d, 7d, 28d)",
-            "CT_Cimento, CT_Água, resistências reais, e Fc_7d",
-            "CT_Cimento, CT_Água, resistências reais, Fc_7d, e aditivos",
+            "CT_Cimento e CT_Agua",
+            "CT_Cimento, CT_Agua, e resistências reais (3d, 7d, 28d)",
+            "CT_Cimento, CT_Agua, resistências reais, e Fc_7d",
+            "CT_Cimento, CT_Agua, resistências reais, Fc_7d, e aditivos",
             "Todas as variáveis"
         ]
     )
 
     # Mapear opções para modelos e colunas esperadas
     configuracoes = {
-        "CT_Cimento e CT_Água": ("modelo1.pkl", ["CT_Cimento", "CT_Água"]),
-        "CT_Cimento, CT_Água, e resistências reais (3d, 7d, 28d)": (
+        "CT_Cimento e CT_Agua": ("modelo1.pkl", ["CT_Cimento", "CT_Agua"]),
+        "CT_Cimento, CT_Agua, e resistências reais (3d, 7d, 28d)": (
             "modelo2.pkl", 
-            ["CT_Cimento", "CT_Água", "cimento_Resistencia_real_3d", 
+            ["CT_Cimento", "CT_Agua", "cimento_Resistencia_real_3d", 
              "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d"]
         ),
-        "CT_Cimento, CT_Água, resistências reais, e Fc_7d": (
+        "CT_Cimento, CT_Agua, resistências reais, e Fc_7d": (
             "modelo3.pkl", 
-            ["CT_Cimento", "CT_Água", "cimento_Resistencia_real_3d", 
+            ["CT_Cimento", "CT_Agua", "cimento_Resistencia_real_3d", 
              "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d", 
              "Fc_7d"]
         ),
-        "CT_Cimento, CT_Água, resistências reais, Fc_7d, e aditivos": (
+        "CT_Cimento, CT_Agua, resistências reais, Fc_7d, e aditivos": (
             "modelo4.pkl", 
-            ["CT_Cimento", "CT_Água", "cimento_Resistencia_real_3d", 
+            ["CT_Cimento", "CT_Agua", "cimento_Resistencia_real_3d", 
              "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d", 
              "Fc_7d", "CT_Silica", "CT_Plastificante", "CT_Polifuncional", 
              "CT_Superplastificante", "CT_Brita_0", "CT_Brita_1", 
@@ -186,7 +186,7 @@ elif tipo_entrada == "Carregar arquivo Excel":
         ),
         "Todas as variáveis": (
             "modelo5.pkl", 
-            ["CT_Cimento", "CT_Água", "cimento_Resistencia_real_3d", 
+            ["CT_Cimento", "CT_Agua", "cimento_Resistencia_real_3d", 
              "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d", 
              "Fc_7d", "CT_Silica", "CT_Plastificante", "CT_Polifuncional", 
              "CT_Superplastificante", "CT_Brita_0", "CT_Brita_1", 
