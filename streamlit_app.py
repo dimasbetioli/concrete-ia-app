@@ -15,7 +15,7 @@ st.set_page_config(
 st.image(
     "https://raw.githubusercontent.com/dimasbetioli/concrete-ia-app/refs/heads/main/mult3.png",
     caption="Previsão de Resistência do Concreto",
-    use_column_width=True
+    use_container_width=True
 )
 
 # Título principal
