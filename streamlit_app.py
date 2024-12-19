@@ -38,13 +38,41 @@ st.markdown("<div style='margin-bottom: 20px;'></div>", unsafe_allow_html=True)
 tipo_entrada = None
 
 # Opções de entrada: manual ou por arquivo
-col1, col2 = st.columns(2)  # Criar duas colunas para exibir as opções lado a lado
+st.markdown(
+    """
+    <style>
+        .custom-button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            width: 200px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .custom-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Centralizar e exibir botões lado a lado
+col1, col2 = st.columns(2)
 
 with col1:
-    if st.button("Inserir manualmente"):
+    if st.markdown('<a href="#" class="custom-button">Inserir manualmente</a>', unsafe_allow_html=True):
         tipo_entrada = "Inserir manualmente"
+
 with col2:
-    if st.button("Carregar arquivo Excel"):
+    if st.markdown('<a href="#" class="custom-button">Carregar arquivo Excel</a>', unsafe_allow_html=True):
         tipo_entrada = "Carregar arquivo Excel"
 
 # Lógica condicional baseada na escolha do usuário
