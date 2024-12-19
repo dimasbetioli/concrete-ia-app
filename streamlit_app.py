@@ -119,7 +119,44 @@ if st.session_state.tipo_entrada == "Inserir manualmente":
             st.number_input("Fc_7d (MPa):", min_value=0.0, step=1.0, key="fc_7d"),
             st.number_input("CT_Silica (kg/m³):", min_value=0.0, step=1.0, key="ct_silica"),
             st.number_input("CT_Plastificante (kg/m³):", min_value=0.0, step=1.0, key="ct_plastificante")
+            st.number_input("CT_Polifuncional (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Superplastificante (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Brita_0 (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Brita_1 (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Areia_natural (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Areia_artificial (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_AC (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Aditivo (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Teor_de_Argamassa (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Teor_de_Agua (kg/m³):", min_value=0.0, step=1.0),
         ]
+    elif opcao == "Todas as variáveis":
+        model_path = "modelo5.pkl"
+        entradas.extend([
+            st.number_input("CT_Cimento (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Água (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("Cimento resistência real 3d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("Cimento resistência real 7d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("Cimento resistência real 28d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("Fc 7d (MPa):", min_value=0.0, step=1.0),
+            st.number_input("CT_Sílica (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Plastificante (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Polifuncional (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Superplastificante (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Brita_0 (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Brita_1 (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Areia_natural (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Areia_artificial (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_AC (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Aditivo (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Teor_de_Argamassa (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("CT_Teor_de_Agua (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("Volume (m³):", min_value=0.0, step=1.0),
+            st.number_input("Mesp_Brita_0 (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("Mesp_Brita_1 (kg/m³):", min_value=0.0, step=1.0),
+            st.number_input("Tempo_de_transporte (s):", min_value=0.0, step=1.0),
+            st.number_input("Slump (cm):", min_value=0.0, step=1.0),
+        ])
 
     # Botão para calcular
     if st.button("Calcular Resistência"):
