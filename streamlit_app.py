@@ -242,7 +242,7 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
             # Oferecer o arquivo para download
             with open(output_file, "rb") as f:
                 st.download_button(
-                    label="Clique para baixar o arquivo com as previsões",
+                    label="Baixar Excel com as previsões",
                     data=f,
                     file_name=output_file,
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
