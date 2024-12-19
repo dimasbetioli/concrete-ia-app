@@ -148,6 +148,56 @@ if tipo_entrada == "Inserir manualmente":
             st.error("Por favor, insira valores válidos para todas as variáveis.")
 
 elif tipo_entrada == "Carregar arquivo Excel":
+    # Selecionar a configuração de entrada
+    st.write("Selecione a configuração de entrada para os dados do Excel:")
+    opcao = st.radio(
+        "Escolha a configuração de entrada:",
+        [
+            "CT_Cimento e CT_Água",
+            "CT_Cimento, CT_Água, e resistências reais (3d, 7d, 28d)",
+            "CT_Cimento, CT_Água, resistências reais, e Fc_7d",
+            "CT_Cimento, CT_Água, resistências reais, Fc_7d, e aditivos",
+            "Todas as variáveis"
+        ]
+    )
+
+    # Mapear opções para modelos e colunas esperadas
+    configuracoes = {
+        "CT_Cimento e CT_Água": ("modelo1.pkl", ["CT_Cimento", "CT_Água"]),
+        "CT_Cimento, CT_Água, e resistências reais (3d, 7d, 28d)": (
+            "modelo2.pkl", 
+            ["CT_Cimento", "CT_Água", "cimento_Resistencia_real_3d", 
+             "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d"]
+        ),
+        "CT_Cimento, CT_Água, resistências reais, e Fc_7d": (
+            "modelo3.pkl", 
+            ["CT_Cimento", "CT_Água", "cimento_Resistencia_real_3d", 
+             "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d", 
+             "Fc_7d"]
+        ),
+        "CT_Cimento, CT_Água, resistências reais, Fc_7d, e aditivos": (
+            "modelo4.pkl", 
+            ["CT_Cimento", "CT_Água", "cimento_Resistencia_real_3d", 
+             "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d", 
+             "Fc_7d", "CT_Silica", "CT_Plastificante", "CT_Polifuncional", 
+             "CT_Superplastificante", "CT_Brita_0", "CT_Brita_1", 
+             "CT_Areia_natural", "CT_Areia_artificial", "CT_AC", "CT_Aditivo", 
+             "CT_Teor_de_Argamassa", "CT_Teor_de_Agua"]
+        ),
+        "Todas as variáveis": (
+            "modelo5.pkl", 
+            ["CT_Cimento", "CT_Água", "cimento_Resistencia_real_3d", 
+             "cimento_Resistencia_real_7d", "cimento_Resistencia_real_28d", 
+             "Fc_7d", "CT_Silica", "CT_Plastificante", "CT_Polifuncional", 
+             "CT_Superplastificante", "CT_Brita_0", "CT_Brita_1", 
+             "CT_Areia_natural", "CT_Areia_artificial", "CT_AC", "CT_Aditivo", 
+             "CT_Teor_de_Argamassa", "CT_Teor_de_Agua", "Volume", 
+             "Mesp_Brita_0", "Mesp_Brita_1", "Tempo_de_transporte", "Slump"]
+        )
+    }
+
+    model_path, colunas_necessarias = configuracoes[opcao]
+
     uploaded_file = st.file_uploader("Faça o upload do arquivo Excel com os dados", type=["xlsx"])
     if uploaded_file is not None:
         try:
@@ -155,28 +205,37 @@ elif tipo_entrada == "Carregar arquivo Excel":
             data = pd.read_excel(uploaded_file)
             st.write("Dados carregados com sucesso:", data.head())
 
-            # Escolher o modelo
-            model_path = "modelo5.pkl"  # Use o modelo correspondente
-            model = joblib.load(model_path)
+            # Validar as colunas do arquivo
+            if not all(col in data.columns for col in colunas_necessarias):
+                st.error(
+                    "O arquivo Excel não contém todas as colunas necessárias para o modelo selecionado. "
+                    f"As colunas esperadas são: {colunas_necessarias}"
+                )
+            else:
+                # Carregar o modelo correspondente
+                model = joblib.load(model_path)
 
-            # Fazer a previsão
-            resultados = model.predict(data)
-            data['Resistência 28d (MPa)'] = resultados
-            st.success("Previsões realizadas com sucesso!")
-            st.write(data)
+                # Selecionar apenas as colunas necessárias
+                data_modelo = data[colunas_necessarias]
 
-            # Gerar arquivo Excel com os resultados
-            buffer = BytesIO()
-            with pd.ExcelWriter(buffer, engine="openpyxl") as writer:
-                data.to_excel(writer, index=False, sheet_name="Resultados")
+                # Fazer a previsão
+                resultados = model.predict(data_modelo)
+                data['Resistência 28d (MPa)'] = resultados
+                st.success("Previsões realizadas com sucesso!")
+                st.write(data)
 
-            # Botão para baixar o arquivo Excel
-            st.download_button(
-                label="Baixar resultados em Excel",
-                data=buffer.getvalue(),
-                file_name="resultados_resistencia_28d.xlsx",
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            )
+                # Gerar arquivo Excel com os resultados
+                buffer = BytesIO()
+                with pd.ExcelWriter(buffer, engine="openpyxl") as writer:
+                    data.to_excel(writer, index=False, sheet_name="Resultados")
+
+                # Botão para baixar o arquivo Excel
+                st.download_button(
+                    label="Baixar resultados em Excel",
+                    data=buffer.getvalue(),
+                    file_name="resultados_resistencia_28d.xlsx",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                )
         except Exception as e:
             st.error(f"Erro ao processar o arquivo ou realizar a predição: {e}")
 # Footer
