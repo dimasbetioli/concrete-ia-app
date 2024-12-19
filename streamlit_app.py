@@ -11,6 +11,13 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Adicionar imagem no topo da página
+st.image(
+    "https://raw.githubusercontent.com/dimasbetioli/concrete-ia-app/refs/heads/main/mult3.png",
+    caption="Previsão de Resistência do Concreto",
+    use_column_width=True
+)
+
 # Título principal
 st.markdown(
     "<h1 style='text-align: center; color: #2196F3;'> Previsão da Resistência do Concreto aos 28 Dias</h1>",
