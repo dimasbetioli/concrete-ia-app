@@ -37,23 +37,22 @@ st.markdown("<div style='margin-bottom: 20px;'></div>", unsafe_allow_html=True)
 # Inicializar a variável com um valor padrão
 tipo_entrada = None
 
-# Opções de entrada: manual ou por arquivo
+# Estilos para os botões
 st.markdown(
     """
     <style>
         .custom-button {
             display: inline-block;
-            padding: 15px 30px;
-            font-size: 16px;
+            padding: 20px 40px;
+            font-size: 18px;
             font-weight: bold;
             color: white;
             background-color: #4CAF50;
             border: none;
             border-radius: 5px;
             text-align: center;
-            width: 200px;
             cursor: pointer;
-            margin: 10px;
+            width: 100%;
         }
 
         .custom-button:hover {
@@ -78,15 +77,23 @@ st.markdown(
 tipo_entrada = None
 
 # Centralizar e exibir botões lado a lado
-col1, col2 = st.columns(2)
+col1, col2 = st.columns([1, 1])  # Utilizar proporções iguais para as colunas
 
 with col1:
-    if st.button("Inserir manualmente"):
+    if st.markdown('<a href="#" class="custom-button">Inserir manualmente</a>', unsafe_allow_html=True):
         tipo_entrada = "Inserir manualmente"
 
 with col2:
-    if st.button("Carregar arquivo Excel"):
+    if st.markdown('<a href="#" class="custom-button">Carregar arquivo Excel</a>', unsafe_allow_html=True):
         tipo_entrada = "Carregar arquivo Excel"
+
+# Lógica condicional baseada na escolha do usuário
+if tipo_entrada == "Inserir manualmente":
+    st.write("Você escolheu inserir os dados manualmente.")
+elif tipo_entrada == "Carregar arquivo Excel":
+    st.write("Você escolheu carregar um arquivo Excel.")
+else:
+    st.write("Por favor, selecione uma opção acima.")
 
 # Lógica condicional baseada na escolha do usuário
 if tipo_entrada == "Inserir manualmente":
