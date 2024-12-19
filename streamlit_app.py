@@ -48,14 +48,12 @@ st.markdown(
 # Inicializando a variável tipo_entrada
 tipo_entrada = None
 
-# Centralizar e exibir botões lado a lado
-col1, col2 = st.columns([1, 1])  # Utilizando a proporção igual para as colunas
+# Centralizar e exibir botões
+col1 = st.columns([1])[0]  # Usando uma única coluna para centralizar os botões
 
 with col1:
     if st.button("Inserir manualmente"):
         tipo_entrada = "Inserir manualmente"
-
-with col2:
     if st.button("Carregar arquivo Excel"):
         tipo_entrada = "Carregar arquivo Excel"
 
