@@ -3,6 +3,8 @@ import pickle
 import numpy as np
 import pandas as pd
 import joblib
+from io import BytesIO
+
 
 # Configuração da página
 st.set_page_config(
