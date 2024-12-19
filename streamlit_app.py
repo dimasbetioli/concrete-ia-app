@@ -79,7 +79,17 @@ elif opcao == "CT_Cimento, CT_Água, resistências reais, Fc_7d, e aditivos":
         st.number_input("Cimento resistência real 28d (MPa):", min_value=0.0, step=1.0),
         st.number_input("Fc 7d (MPa):", min_value=0.0, step=1.0),
         st.number_input("CT_Sílica (kg/m³):", min_value=0.0, step=1.0),
-        # Adicione os outros campos de aditivos conforme necessário
+        st.number_input("CT_Plastificante (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Polifuncional (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Superplastificante (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Brita_0 (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Brita_1 (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Areia_natural (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Areia_artificial (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_AC (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Aditivo (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Teor_de_Argamassa (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Teor_de_Agua (kg/m³):", min_value=0.0, step=1.0),
     ])
 
 elif opcao == "Todas as variáveis":
@@ -91,8 +101,23 @@ elif opcao == "Todas as variáveis":
         st.number_input("Cimento resistência real 7d (MPa):", min_value=0.0, step=1.0),
         st.number_input("Cimento resistência real 28d (MPa):", min_value=0.0, step=1.0),
         st.number_input("Fc 7d (MPa):", min_value=0.0, step=1.0),
+        st.number_input("CT_Sílica (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Plastificante (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Polifuncional (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Superplastificante (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Brita_0 (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Brita_1 (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Areia_natural (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Areia_artificial (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_AC (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Aditivo (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Teor_de_Argamassa (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("CT_Teor_de_Agua (kg/m³):", min_value=0.0, step=1.0),
         st.number_input("Volume (m³):", min_value=0.0, step=1.0),
-        # Adicione os outros campos conforme necessário
+        st.number_input("Mesp_Brita_0 (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("Mesp_Brita_1 (kg/m³):", min_value=0.0, step=1.0),
+        st.number_input("Tempo_de_transporte (s):", min_value=0.0, step=1.0),
+        st.number_input("Slump (cm):", min_value=0.0, step=1.0),
     ])
 
 # Botão para calcular
