@@ -68,7 +68,7 @@ st.markdown(
 st.markdown(
     """
     <p style="text-align: center; font-size: 16px; color: #2C2C2C;">
-        <span style="font-size: 30px; color: #4CAF50;">&#8595;</span> Escolha se deseja inserir os dados manualmente ou carregar um arquivo Excel.
+        <span style="font-size: 50px; color: #4CAF50;">&#8595;</span>Escolha se deseja inserir os dados manualmente ou carregar um arquivo Excel<span style="font-size: 50px; color: #4CAF50;">&#8595;</span>
     </p>
     """,
     unsafe_allow_html=True
