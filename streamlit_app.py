@@ -242,11 +242,7 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
             # Oferecer o arquivo para download
             with open(output_file, "rb") as f:
                 st.download_button(
-                    label=st.markdown(
-    "<h1 style='text-align: center; color: #2196F3; font-size: 18px;'> Baixar Excel com as previsões</h1>",
-    unsafe_allow_html=True,
-)
-,
+                    label=("Baixar Excel com as previsões"),
                     data=f,
                     file_name=output_file,
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
