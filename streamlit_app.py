@@ -5,7 +5,6 @@ import pandas as pd
 import joblib
 from io import BytesIO
 
-
 # Configuração da página
 st.set_page_config(
     page_title="Previsão de Resistência do Concreto",
@@ -166,16 +165,20 @@ elif tipo_entrada == "Carregar arquivo Excel":
             st.success("Previsões realizadas com sucesso!")
             st.write(data)
 
-            # Botão para baixar resultados
+            # Gerar arquivo Excel com os resultados
+            buffer = BytesIO()
+            with pd.ExcelWriter(buffer, engine="openpyxl") as writer:
+                data.to_excel(writer, index=False, sheet_name="Resultados")
+
+            # Botão para baixar o arquivo Excel
             st.download_button(
-                label="Baixar resultados",
-                data=data.to_csv(index=False),
-                file_name="resultados_resistencia_28d.csv",
-                mime="text/csv",
+                label="Baixar resultados em Excel",
+                data=buffer.getvalue(),
+                file_name="resultados_resistencia_28d.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
             )
         except Exception as e:
             st.error(f"Erro ao processar o arquivo ou realizar a predição: {e}")
-
 # Footer
 st.markdown(
     """
