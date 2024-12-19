@@ -64,15 +64,28 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Título informativo
+st.markdown(
+    """
+    <p style="text-align: center; font-size: 16px; color: #2C2C2C;">
+        Por favor, selecione acima <span style="font-size: 30px; color: #4CAF50;">&#8593;</span> se deseja inserir os dados manualmente ou carregar um arquivo Excel.
+    </p>
+    """,
+    unsafe_allow_html=True
+)
+
+# Inicializando a variável tipo_entrada
+tipo_entrada = None
+
 # Centralizar e exibir botões lado a lado
 col1, col2 = st.columns(2)
 
 with col1:
-    if st.markdown('<a href="#" class="custom-button">Inserir manualmente</a>', unsafe_allow_html=True):
+    if st.button("Inserir manualmente"):
         tipo_entrada = "Inserir manualmente"
 
 with col2:
-    if st.markdown('<a href="#" class="custom-button">Carregar arquivo Excel</a>', unsafe_allow_html=True):
+    if st.button("Carregar arquivo Excel"):
         tipo_entrada = "Carregar arquivo Excel"
 
 # Lógica condicional baseada na escolha do usuário
@@ -80,15 +93,7 @@ if tipo_entrada == "Inserir manualmente":
     st.write("Você escolheu inserir os dados manualmente.")
 elif tipo_entrada == "Carregar arquivo Excel":
     st.write("Você escolheu carregar um arquivo Excel.")
-else:
-    st.markdown(
-    """
-    <p style="text-align: center; font-size: 16px; color: #2C2C2C;">
-        Por favor, selecione acima <span style="font-size: 30px; color: #4CAF50;">&#8593;</span> se deseja inserir os dados manualmente ou carregar um arquivo Excel 
-    </p>
-    """,
-    unsafe_allow_html=True,
-)
+
 if tipo_entrada == "Inserir manualmente":
     # Opções de configuração
     opcao = st.radio(
