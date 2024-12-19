@@ -32,7 +32,7 @@ st.markdown(
 )
 
 # Espaço extra entre a introdução e as opções
-st.markdown("<div style='margin-bottom: 10px;'></div>", unsafe_allow_html=True)
+#st.markdown("<div style='margin-bottom: 10px;'></div>", unsafe_allow_html=True)
 
 # Inicializar a variável com um valor padrão
 tipo_entrada = None
