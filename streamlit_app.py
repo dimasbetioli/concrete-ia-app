@@ -230,7 +230,7 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
 
             # Fazer a previsão
             previsoes = model.predict(input_data)
-            st.write(f"Previsões: {previsoes}")
+            st.write("Previsões calculadas com sucesso!")
 
             # Adicionar as previsões como uma nova coluna no DataFrame
             df["Previsões"] = previsoes
@@ -238,12 +238,11 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
             # Salvar o DataFrame atualizado em um novo arquivo Excel
             output_file = "previsoes_" + uploaded_file.name
             df.to_excel(output_file, index=False)
-            st.write(f"As previsões foram salvas em: {output_file}")
 
             # Oferecer o arquivo para download
             with open(output_file, "rb") as f:
                 st.download_button(
-                    label="Baixar o arquivo com as previsões",
+                    label="Clique para baixar o arquivo com as previsões",
                     data=f,
                     file_name=output_file,
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
