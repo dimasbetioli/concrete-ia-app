@@ -42,28 +42,25 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Inicializando a variável tipo_entrada
-tipo_entrada = None
+# Inicializando o estado da escolha
+if 'tipo_entrada' not in st.session_state:
+    st.session_state.tipo_entrada = None
 
 # Centralizar e exibir botões lado a lado
 col1, col2 = st.columns(2)  # Criando duas colunas de igual largura para exibir os botões lado a lado
 
 with col1:
     if st.button("Inserir manualmente"):
-        tipo_entrada = "Inserir manualmente"
+        st.session_state.tipo_entrada = "Inserir manualmente"
 
 with col2:
     if st.button("Carregar arquivo Excel"):
-        tipo_entrada = "Carregar arquivo Excel"
+        st.session_state.tipo_entrada = "Carregar arquivo Excel"
 
 # Lógica condicional baseada na escolha do usuário
-if tipo_entrada == "Inserir manualmente":
+if st.session_state.tipo_entrada == "Inserir manualmente":
     st.write("Você escolheu inserir os dados manualmente.")
-elif tipo_entrada == "Carregar arquivo Excel":
-    st.write("Você escolheu carregar um arquivo Excel.")
 
-# Manter estado das entradas
-if tipo_entrada == "Inserir manualmente":
     # Opções de configuração
     opcao = st.radio(
         "Escolha a configuração de entrada:",
@@ -137,6 +134,22 @@ if tipo_entrada == "Inserir manualmente":
         else:
             st.error("Por favor, insira valores válidos para todas as variáveis.")
 
-elif tipo_entrada == "Carregar arquivo Excel":
-    # Lógica para carregar arquivo Excel
+elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
     st.write("Aqui você pode carregar um arquivo Excel para fazer a previsão.")
+    uploaded_file = st.file_uploader("Escolha um arquivo Excel", type=["xlsx", "xls"])
+
+    if uploaded_file is not None:
+        # Processamento do arquivo Excel
+        df = pd.read_excel(uploaded_file)
+        st.write(df.head())  # Exibe as primeiras linhas do DataFrame para visualização
+
+        if st.button("Fazer previsão com o Excel"):
+            try:
+                # Supondo que o modelo já foi carregado previamente
+                model = joblib.load("modelo_geral.pkl")
+                # Extrair dados relevantes do Excel para fazer a previsão
+                input_data = df.iloc[:, :-1].values  # Supondo que a última coluna é a variável alvo
+                previsoes = model.predict(input_data)
+                st.write(f"Previsões: {previsoes}")
+            except Exception as e:
+                st.error(f"Erro ao realizar a previsão: {e}")
