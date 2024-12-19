@@ -11,7 +11,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-model = joblib.load("HistGB.pkl")
+model = joblib.load("Linear0.pkl")
 
 # Título principal
 st.markdown(
