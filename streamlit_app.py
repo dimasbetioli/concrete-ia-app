@@ -27,15 +27,25 @@ st.markdown(
 
 # Introdução
 st.markdown(
-    '<h3 style="text-align: center; color: #2C2C2C; font-size: 14px;">Equipe liderada pelo Prof André C.P.F.L. de Carvalho</h3>',
+    '<h3 style="text-align: center; color: #2C2C2C; font-size: 14px; margin-bottom: 20px;">Equipe liderada pelo Prof André C.P.F.L. de Carvalho</h3>',
     unsafe_allow_html=True,
 )
 
+# Espaço extra entre a introdução e as opções
+st.markdown("<div style='margin-bottom: 20px;'></div>", unsafe_allow_html=True)
+
 # Opções de entrada: manual ou por arquivo
-tipo_entrada = st.radio(
-    "Como você gostaria de fornecer os dados?",
-    ["Inserir manualmente", "Carregar arquivo Excel"]
-)
+col1, col2 = st.columns(2)  # Criar duas colunas para exibir as opções lado a lado
+
+with col1:
+    if st.button("Inserir manualmente"):
+        tipo_entrada = "Inserir manualmente"
+with col2:
+    if st.button("Carregar arquivo Excel"):
+        tipo_entrada = "Carregar arquivo Excel"
+
+# Exibir a escolha atual
+st.write(f"Opção selecionada: {tipo_entrada if 'tipo_entrada' in locals() else 'Nenhuma'}")
 
 if tipo_entrada == "Inserir manualmente":
     # Opções de configuração
