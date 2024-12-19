@@ -38,37 +38,11 @@ st.markdown(
 tipo_entrada = None
 
 # Opções de entrada: manual ou por arquivo
-st.markdown(
-    """
-    <style>
-        .custom-button {
-            display: inline-block;
-            padding: 15px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            background-color: #4CAF50;
-            border: none;
-            border-radius: 5px;
-            text-align: center;
-            width: 200px;
-            cursor: pointer;
-            margin: 10px;
-        }
-
-        .custom-button:hover {
-            background-color: #45a049;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Título informativo
 st.markdown(
     """
     <p style="text-align: center; font-size: 16px; color: #2C2C2C;">
-        <span style="font-size: 50px; color: #4CAF50;">&#8595;</span>Escolha se deseja inserir os dados manualmente ou carregar um arquivo Excel<span style="font-size: 50px; color: #4CAF50;">&#8595;</span>
+        <span style="font-size: 30px; color: #4CAF50;">&#8595;</span> Escolha se deseja inserir os dados manualmente ou carregar um arquivo Excel <span style="font-size: 30px; color: #4CAF50;">&#8595;</span>
     </p>
     """,
     unsafe_allow_html=True
