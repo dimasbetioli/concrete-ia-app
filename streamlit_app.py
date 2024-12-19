@@ -263,11 +263,11 @@ elif tipo_entrada == "Carregar arquivo Excel":
         except Exception as e:
             st.error(f"Erro ao processar o arquivo ou realizar a predição: {e}")
 # Footer
-st.markdown(
-    """
-    <footer style="text-align: center; margin-top: 20px;">
-        <small>Projeto Embrapii | USP | ITA</small>
-    </footer>
-    """,
-    unsafe_allow_html=True,
-)
+#st.markdown(
+#    """
+#    <footer style="text-align: center; margin-top: 20px;">
+#        <small>Projeto Embrapii | USP | ITA</small>
+#    </footer>
+#    """,
+#    unsafe_allow_html=True,
+#)
