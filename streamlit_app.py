@@ -21,7 +21,7 @@ st.image(
 
 # Título principal
 st.markdown(
-    "<h1 style='text-align: center; color: #2196F3;'> PROJETO - IA aplicada à previsão do desempenho de cimentos e concretos</h1>",
+    "<h1 style='text-align: center; color: #2196F3; font-size: 18px;'> PROJETO - IA APLICADA À PREVISÃO DA RESISTÊNCIA DE CONCRETOS</h1>",
     unsafe_allow_html=True,
 )
 
