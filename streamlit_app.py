@@ -172,7 +172,22 @@ if st.session_state.tipo_entrada == "Inserir manualmente":
             st.error("Por favor, insira valores válidos para todas as variáveis.")
 
 elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
-    st.write("Aqui você pode carregar um arquivo Excel para fazer a previsão.")
+    # Criar duas colunas: uma para o texto e outra para o botão
+    col1, col2 = st.columns([3, 1])  # Ajuste as proporções conforme necessário
+
+    # Coluna da esquerda com o texto
+    with col1:
+        st.write("Aqui você pode carregar um arquivo Excel para fazer a previsão.")
+
+    # Coluna da direita com o botão de download
+    with col2:
+        with open("modelo.xlsx", "rb") as f:
+            st.download_button(
+                label="Baixar modelo",
+                data=f,
+                file_name="modelo.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
 
     # Opções de configuração para o Excel
     opcao_excel = st.radio(
@@ -185,15 +200,6 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
             "Todas as variáveis"
         ]
     )
-
-    # Botão para baixar o modelo de planilha
-    with open("modelo.xlsx", "rb") as f:
-        st.download_button(
-            label="Baixar modelo",
-            data=f,
-            file_name="modelo.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
 
     # Carregar o arquivo Excel
     uploaded_file = st.file_uploader("Escolha um arquivo Excel", type=["xlsx", "xls"])
