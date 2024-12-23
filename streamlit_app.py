@@ -178,16 +178,15 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
     # Coluna da esquerda com o texto
     with col1:
         st.write(
-    "Aqui você pode carregar um arquivo Excel para fazer a previsão"
-    "<span style='font-size: 30px; color: #4CAF50;'>&#8594;</span>",
-    "<span style='font-size: 30px; color: #4CAF50;'>&#8594;</span>",
-    "<span style='font-size: 30px; color: #4CAF50;'>&#8594;</span>",
-    "<span style='font-size: 30px; color: #4CAF50;'>&#8594;</span>",
-    unsafe_allow_html=True
-)
+            "Aqui você pode carregar um arquivo Excel para fazer a previsão "
+            "<span style='font-size: 30px; color: #4CAF50;'>&#8594;</span>",
+            unsafe_allow_html=True
+        )
 
     # Coluna da direita com o botão de download
     with col2:
+        # Adicionar espaço acima do botão
+        st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
         with open("modelo.xlsx", "rb") as f:
             st.download_button(
                 label="Baixar modelo",
