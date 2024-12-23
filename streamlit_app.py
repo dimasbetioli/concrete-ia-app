@@ -274,7 +274,7 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
                 # Aplica estilo apenas para a coluna "Previsões"
                 return 'background-color: #FFFF00; font-weight: bold;' if val == "Previsões" else None
     
-            st.write("Resultados com destaque na coluna 'Previsões':")
+            st.write("Variáveis de entrada acompanhadas das respectivas previsões:")
             st.dataframe(input_data.style.applymap(highlight_column, subset=["Previsões"]))
     
             # Salvar o DataFrame atualizado em um novo arquivo Excel
