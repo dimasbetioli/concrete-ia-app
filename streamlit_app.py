@@ -174,15 +174,6 @@ if st.session_state.tipo_entrada == "Inserir manualmente":
 elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
     st.write("Aqui você pode carregar um arquivo Excel para fazer a previsão.")
 
-    # Botão para baixar o modelo de planilha
-    with open("modelo.xlsx", "rb") as f:
-        st.download_button(
-            label="Baixar modelo",
-            data=f,
-            file_name="modelo.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
-
     # Opções de configuração para o Excel
     opcao_excel = st.radio(
         "Escolha a configuração de entrada:",
@@ -194,6 +185,15 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
             "Todas as variáveis"
         ]
     )
+
+    # Botão para baixar o modelo de planilha
+    with open("modelo.xlsx", "rb") as f:
+        st.download_button(
+            label="Baixar modelo",
+            data=f,
+            file_name="modelo.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
 
     # Carregar o arquivo Excel
     uploaded_file = st.file_uploader("Escolha um arquivo Excel", type=["xlsx", "xls"])
