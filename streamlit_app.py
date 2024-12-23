@@ -57,6 +57,9 @@ with col2:
     if st.button("Carregar arquivo Excel"):
         st.session_state.tipo_entrada = "Carregar arquivo Excel"
 
+# Adicionar espaço acima do botão
+st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
+
 # Lógica condicional baseada na escolha do usuário
 if st.session_state.tipo_entrada == "Inserir manualmente":
     st.write("Você escolheu inserir os dados manualmente.")
