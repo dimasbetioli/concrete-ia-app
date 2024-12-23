@@ -270,11 +270,12 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
             input_data["Previsões"] = previsoes
     
             # Destaque na tela
-            def highlight_predictions(val):
-                return 'background-color: #FFFF00; font-weight: bold;' if val.name == "Previsões" else None
+            def highlight_column(val):
+                # Aplica estilo apenas para a coluna "Previsões"
+                return 'background-color: #FFFF00; font-weight: bold;' if val == "Previsões" else None
     
             st.write("Resultados com destaque na coluna 'Previsões':")
-            st.dataframe(input_data.style.applymap(highlight_predictions, subset=["Previsões"]))
+            st.dataframe(input_data.style.applymap(highlight_column, subset=["Previsões"]))
     
             # Salvar o DataFrame atualizado em um novo arquivo Excel
             output_file = "previsoes_" + uploaded_file.name
