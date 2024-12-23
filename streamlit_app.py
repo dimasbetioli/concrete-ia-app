@@ -186,7 +186,7 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
     # Coluna da direita com o botão de download
     with col2:
         # Adicionar espaço acima do botão
-        st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
+        st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
         with open("modelo.xlsx", "rb") as f:
             st.download_button(
                 label="Baixar modelo",
