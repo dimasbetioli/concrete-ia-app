@@ -221,6 +221,8 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
 
     if uploaded_file is not None:
 
+        df = pd.read_excel(uploaded_file)
+
         try:
             # Seleção do modelo e das variáveis de entrada com base na configuração escolhida
             if opcao_excel == "CT_Cimento e CT_Agua":
