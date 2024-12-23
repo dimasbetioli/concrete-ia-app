@@ -49,7 +49,7 @@ O aplicativo permite que o usuário insira dados de forma manual ou faça upload
 
 ## Estrutura do Código
 
-O código principal está dividido em duas partes:
+O código principal está dividido em três partes:
 
 1. **Entrada de Dados**:
    - O usuário pode escolher entre inserir dados manualmente ou carregar um arquivo Excel.
