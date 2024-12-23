@@ -10,7 +10,7 @@ from openpyxl.styles import Font, PatternFill
 # Configuração da página
 st.set_page_config(
     page_title="Previsão de Resistência do Concreto",
-    page_icon="https://raw.githubusercontent.com/dimasbetioli/concrete-ia-app/refs/heads/main/mult3.png",
+    page_icon="https://raw.githubusercontent.com/dimasbetioli/concrete-ia-app/refs/heads/main/mult.png",
     layout="centered",
     initial_sidebar_state="expanded"
 )
