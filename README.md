@@ -8,7 +8,7 @@ O aplicativo permite que o usuário insira dados de forma manual ou faça upload
 
 1. **Inserção Manual de Dados:**
    - O usuário escolhe entre diferentes configurações de variáveis (como CT_Cimento, CT_Agua, resistências reais em diferentes dias, e aditivos).
-   - A previsão da resistência do concreto aos 28 dias é calculada com base no modelo pretreinado.
+   - A previsão da resistência do concreto aos 28 dias é calculada com base no modelo pré-treinado.
 
 2. **Carregar Arquivo Excel:**
    - O usuário pode carregar um arquivo Excel contendo os dados, que são processados e as previsões de resistência são aplicadas a cada linha do arquivo.
