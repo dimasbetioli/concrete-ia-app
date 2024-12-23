@@ -219,6 +219,12 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
     # Carregar o arquivo Excel
     uploaded_file = st.file_uploader("Escolha um arquivo Excel", type=["xlsx", "xls"])
 
+import pandas as pd
+import joblib
+import streamlit as st
+from openpyxl import load_workbook
+from openpyxl.styles import Font, PatternFill
+
 if uploaded_file is not None:
     df = pd.read_excel(uploaded_file)
 
@@ -267,12 +273,32 @@ if uploaded_file is not None:
         # Adicionar as previsões ao DataFrame com as variáveis selecionadas
         input_data["Previsões"] = previsoes
 
-        # Exibir o DataFrame com as previsões
-        st.write(input_data)
+        # Destaque na tela
+        def highlight_predictions(val):
+            return 'background-color: #FFFF00; font-weight: bold;' if val.name == "Previsões" else None
+
+        st.write("Resultados com destaque na coluna 'Previsões':")
+        st.dataframe(input_data.style.applymap(highlight_predictions, subset=["Previsões"]))
 
         # Salvar o DataFrame atualizado em um novo arquivo Excel
         output_file = "previsoes_" + uploaded_file.name
         input_data.to_excel(output_file, index=False)
+
+        # Aplicar estilo no Excel
+        wb = load_workbook(output_file)
+        ws = wb.active
+
+        # Aplicar destaque à coluna "Previsões"
+        yellow_fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")
+        bold_font = Font(bold=True)
+
+        previsoes_col_idx = len(selected_columns) + 1  # Índice da coluna "Previsões"
+        for row in ws.iter_rows(min_row=2, min_col=previsoes_col_idx, max_col=previsoes_col_idx):
+            for cell in row:
+                cell.fill = yellow_fill
+                cell.font = bold_font
+
+        wb.save(output_file)
 
         # Oferecer o arquivo para download
         with open(output_file, "rb") as f:
