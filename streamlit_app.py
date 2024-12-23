@@ -263,13 +263,13 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
             st.write("Previsões calculadas com sucesso!")
 
             # Adicionar as previsões como uma nova coluna no DataFrame
-            df["Previsões"] = previsoes
+            input_data["Previsões"] = previsoes
 
-            st.write(df.head())  # Exibe as primeiras linhas do DataFrame para visualização
+            st.write(input_data)  # Exibe os resultados
 
             # Salvar o DataFrame atualizado em um novo arquivo Excel
             output_file = "previsoes_" + uploaded_file.name
-            df.to_excel(output_file, index=False)
+            input_data.to_excel(output_file, index=False)
 
             # Oferecer o arquivo para download
             with open(output_file, "rb") as f:
