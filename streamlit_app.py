@@ -189,7 +189,6 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
             "<span style='font-size: 30px; color: #4CAF50;'>&#8594;</span>",
             "<span style='font-size: 30px; color: #4CAF50;'>&#8594;</span>",
             "<span style='font-size: 30px; color: #4CAF50;'>&#8594;</span>",
-            "<span style='font-size: 30px; color: #4CAF50;'>&#8594;</span>",
             unsafe_allow_html=True
         )
 
