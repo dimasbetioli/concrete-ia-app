@@ -171,8 +171,19 @@ if st.session_state.tipo_entrada == "Inserir manualmente":
         else:
             st.error("Por favor, insira valores válidos para todas as variáveis.")
 
+import streamlit as st
+
 elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
     st.write("Aqui você pode carregar um arquivo Excel para fazer a previsão.")
+
+    # Botão para baixar o modelo de planilha
+    with open("modelo.xlsx", "rb") as f:
+        st.download_button(
+            label="Baixar modelo",
+            data=f,
+            file_name="modelo.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
 
     # Opções de configuração para o Excel
     opcao_excel = st.radio(
