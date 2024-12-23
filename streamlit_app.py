@@ -220,8 +220,6 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
     uploaded_file = st.file_uploader("Escolha um arquivo Excel", type=["xlsx", "xls"])
 
     if uploaded_file is not None:
-        df = pd.read_excel(uploaded_file)
-        st.write(df.head())  # Exibe as primeiras linhas do DataFrame para visualização
 
         try:
             # Seleção do modelo e das variáveis de entrada com base na configuração escolhida
@@ -264,6 +262,8 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
 
             # Adicionar as previsões como uma nova coluna no DataFrame
             df["Previsões"] = previsoes
+
+            st.write(df.head())  # Exibe as primeiras linhas do DataFrame para visualização
 
             # Salvar o DataFrame atualizado em um novo arquivo Excel
             output_file = "previsoes_" + uploaded_file.name
