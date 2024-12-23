@@ -171,8 +171,6 @@ if st.session_state.tipo_entrada == "Inserir manualmente":
         else:
             st.error("Por favor, insira valores válidos para todas as variáveis.")
 
-import streamlit as st
-
 elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
     st.write("Aqui você pode carregar um arquivo Excel para fazer a previsão.")
 
