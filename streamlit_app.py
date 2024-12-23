@@ -4,6 +4,8 @@ import numpy as np
 import pandas as pd
 import joblib
 from io import BytesIO
+from openpyxl import load_workbook
+from openpyxl.styles import Font, PatternFill
 
 # Configuração da página
 st.set_page_config(
@@ -218,12 +220,6 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
 
     # Carregar o arquivo Excel
     uploaded_file = st.file_uploader("Escolha um arquivo Excel", type=["xlsx", "xls"])
-
-import pandas as pd
-import joblib
-import streamlit as st
-from openpyxl import load_workbook
-from openpyxl.styles import Font, PatternFill
 
 if uploaded_file is not None:
     df = pd.read_excel(uploaded_file)
