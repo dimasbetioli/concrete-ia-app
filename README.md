@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/dimasbetioli/concrete-ia-app/refs/heads/main/mult3.png" width="40" /> IA Aplicada à Previsão da Resistência de Concretos
+# <img src="https://raw.githubusercontent.com/dimasbetioli/concrete-ia-app/refs/heads/main/mult.png" width="40" /> IA Aplicada à Previsão da Resistência de Concretos
 
 Este projeto utiliza Inteligência Artificial para prever a resistência do concreto aos 28 dias com base em uma variedade de variáveis de entrada, como características do cimento, água, materiais adicionais, e outros fatores que influenciam o processo de concretagem.
 
