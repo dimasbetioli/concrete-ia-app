@@ -181,7 +181,7 @@ elif st.session_state.tipo_entrada == "Carregar arquivo Excel":
     # Coluna da esquerda com o texto
     with col1:
         st.write(
-            "Para fazer o upload do Excel, utilize o modelo ao lado&nbsp;"
+            "Para fazer o upload do Excel, utilize o modelo ao lado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
             "<span style='font-size: 30px; color: #4CAF50;'>&#8594;</span>",
             "<span style='font-size: 30px; color: #4CAF50;'>&#8594;</span>",
             "<span style='font-size: 30px; color: #4CAF50;'>&#8594;</span>",
